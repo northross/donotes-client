@@ -35,13 +35,13 @@ class TodosIndex extends Component {
     } else {
       console.log(todos)
       todosJsx = (
-        <ul>
+        <div className="bg-light">
           {todos.map(todo => (
-            <li key={todo.id}>
+            <div key={todo.id}>
               <Link to={`/todos/${todo.id}`}>{todo.title}</Link>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       )
     }
 

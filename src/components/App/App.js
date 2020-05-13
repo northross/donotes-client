@@ -56,11 +56,11 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/todos' render={() => (
+          <AuthenticatedRoute user={user} exact path='/todos' render={() => (
             <TodosIndex msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/todos/:id' render={() => (
-            <TodosShow msgAlert={this.msgAlert} user={user} />
+          <AuthenticatedRoute user={user} exact path='/todos/:id' render={({ match }) => (
+            <TodosShow msgAlert={this.msgAlert} match={match} user={user} />
           )} />
         </main>
       </Fragment>
