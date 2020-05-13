@@ -10,6 +10,7 @@ import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 import TodosIndex from '../Todos/TodosIndex'
 import TodosShow from '../Todos/TodosShow'
+import TodosUpdate from '../Todos/TodosUpdate'
 
 class App extends Component {
   constructor () {
@@ -61,6 +62,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} exact path='/todos/:id' render={({ match }) => (
             <TodosShow msgAlert={this.msgAlert} match={match} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/todos/:id/edit' render={({ match }) => (
+            <TodosUpdate msgAlert={this.msgAlert} match={match} user={user} />
           )} />
         </main>
       </Fragment>

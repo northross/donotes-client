@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import axios from 'axios'
 // import { Link } from 'react-router-dom'
 import apiUrl from '../../apiConfig'
@@ -60,7 +60,9 @@ class TodosShow extends Component {
           <h5>Due: {todo.due}</h5>
           <h4>Details: {todo.item}</h4>
           <button onClick={this.destroy}>Delete</button>
-          <button>Update</button>
+          <button>
+            <Link to={`/todos/${this.props.match.params.id}/edit`}>Update</Link>
+          </button>
         </div>
       )
     }
