@@ -11,6 +11,7 @@ import ChangePassword from '../ChangePassword/ChangePassword'
 import TodosIndex from '../Todos/TodosIndex'
 import TodosShow from '../Todos/TodosShow'
 import TodosUpdate from '../Todos/TodosUpdate'
+import TodosCreate from '../Todos/TodosCreate'
 
 class App extends Component {
   constructor () {
@@ -65,6 +66,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} exact path='/todos/:id/edit' render={({ match }) => (
             <TodosUpdate msgAlert={this.msgAlert} match={match} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/todos-create' render={({ match }) => (
+            <TodosCreate msgAlert={this.msgAlert} match={match} user={user} />
           )} />
         </main>
       </Fragment>
