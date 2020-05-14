@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
+import messages from '../AutoDismissAlert/messages'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
@@ -13,6 +14,7 @@ class TodosUpdate extends Component {
   }
 
   componentDidMount () {
+    const { msgAlert } = this.props
     axios({
       url: `${apiUrl}/todos/${this.props.match.params.id}`,
       method: 'GET',
@@ -23,7 +25,16 @@ class TodosUpdate extends Component {
       .then(res => {
         this.setState({ todo: res.data.todo })
       })
-      .catch(console.error)
+      .then(() => msgAlert({
+        heading: 'Updated Your Do Task',
+        message: messages.todoUpdateSuccess,
+        variant: 'success'
+      }))
+      .catch(() => msgAlert({
+        heading: 'Updating Your Do Task Failed',
+        message: messages.todoUpdateFailure,
+        variant: 'failure'
+      }))
   }
 
   handleChange = (event) => {

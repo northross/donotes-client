@@ -1,4 +1,12 @@
 export default {
+  todoSuccess: 'Created New To Do task!',
+  todoFailure: 'Created Task Failed',
+  todoAllSuccess: 'All To Do Tasks',
+  todoAllFailure: 'All To Do Tasks Failed To Load',
+  todoShowSuccess: 'Your Do Task',
+  todoShowFailure: 'Your To Do Task Did Not Load',
+  todoUpdateSuccess: 'Updated Your To Do Task',
+  todoUpdateFailure: 'Updating Your To Do Task Failed',
   signUpSuccess: 'Succesfully registered! You\'ve been signed in as well.',
   signUpFailure: 'Registration failed. Email may be taken, or passwords don\'t match.',
   signInSuccess: 'Welcome!',

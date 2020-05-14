@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect, Link } from 'react-router-dom'
+import messages from '../AutoDismissAlert/messages'
 import axios from 'axios'
-// import { Link } from 'react-router-dom'
 import apiUrl from '../../apiConfig'
 
 class TodosShow extends Component {
@@ -15,7 +15,7 @@ class TodosShow extends Component {
   }
 
   componentDidMount () {
-    console.log(this.props)
+    const { msgAlert } = this.props
     // console.log(this.props.match.params.id)
     axios({
       url: `${apiUrl}/todos/${this.props.match.params.id}`,
@@ -27,7 +27,16 @@ class TodosShow extends Component {
       .then(res => {
         this.setState({ todo: res.data.todo })
       })
-      .catch(console.error)
+      .then(() => msgAlert({
+        heading: 'Your Do Tasks',
+        message: messages.todoShowSuccess,
+        variant: 'success'
+      }))
+      .catch(() => msgAlert({
+        heading: 'Your To Do Tasks Did Not Load',
+        message: messages.todoShowFailure,
+        variant: 'success'
+      }))
   }
 
   destroy = (event) => {

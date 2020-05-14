@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
+import messages from '../AutoDismissAlert/messages'
 
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
@@ -29,6 +30,8 @@ class TodosCreate extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
 
+    const { msgAlert } = this.props
+
     axios({
       url: `${apiUrl}/todos`,
       method: 'POST',
@@ -42,7 +45,16 @@ class TodosCreate extends Component {
       .then((res) => {
         this.setState({ createdId: res.data.todo.id })
       })
-      .catch(console.error)
+      .then(() => msgAlert({
+        heading: 'Task Created!',
+        message: messages.todoSuccess,
+        variant: 'success'
+      }))
+      .catch(() => msgAlert({
+        heading: 'Create Task Failed',
+        message: messages.todoFailure,
+        variant: 'failure'
+      }))
   }
 
   render () {

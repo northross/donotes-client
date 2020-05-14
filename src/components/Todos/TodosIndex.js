@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import messages from '../AutoDismissAlert/messages'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
@@ -13,6 +14,7 @@ class TodosIndex extends Component {
   }
 
   componentDidMount () {
+    const { msgAlert } = this.props
     axios({
       url: apiUrl + '/todos',
       method: 'GET',
@@ -23,7 +25,16 @@ class TodosIndex extends Component {
       .then(res => {
         this.setState({ todos: res.data.todos })
       })
-      .catch(console.error)
+      .then(() => msgAlert({
+        heading: 'All To Do Tasks',
+        message: messages.todoAllSuccess,
+        variant: 'success'
+      }))
+      .catch(() => msgAlert({
+        heading: 'All To Do Tasks Can Not Load',
+        message: messages.todoAllFailure,
+        variant: 'failure'
+      }))
   }
 
   render () {
