@@ -40,11 +40,12 @@ class TodosIndex extends Component {
   render () {
     const { todos } = this.state
     let todosJsx = ''
-
+    const heading = {
+      textAlign: 'center'
+    }
     if (!todos) {
       todosJsx = 'Loading...'
     } else {
-      console.log(todos)
       todosJsx = (
         <div className="bg-light">
           {todos.map(todo => (
@@ -57,7 +58,7 @@ class TodosIndex extends Component {
     }
 
     return (
-      <div>
+      <div style={heading}>
         <h1>To Do List</h1>
         {todosJsx}
       </div>

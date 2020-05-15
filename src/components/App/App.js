@@ -12,6 +12,7 @@ import TodosIndex from '../Todos/TodosIndex'
 import TodosShow from '../Todos/TodosShow'
 import TodosUpdate from '../Todos/TodosUpdate'
 import TodosCreate from '../Todos/TodosCreate'
+import Home from '../Home/Home'
 
 class App extends Component {
   constructor () {
@@ -45,6 +46,9 @@ class App extends Component {
             message={msgAlert.message}
           />
         ))}
+        <Route exact path='/' render={() => (
+          <Home msgAlert={this.msgAlert} setUser={this.setUser} />
+        )} />
         <main className="container">
           <Route path='/sign-up' render={() => (
             <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />

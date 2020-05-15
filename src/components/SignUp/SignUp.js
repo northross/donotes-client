@@ -48,9 +48,20 @@ class SignUp extends Component {
 
   render () {
     const { email, password, passwordConfirmation } = this.state
+    const border = {
+      borderStyle: 'solid',
+      borderWidth: 'medium',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      maxWidth: '550px',
+      margin: '40px',
+      padding: '0 0 55px 0',
+      background: 'rgba(0,255,241,.9)'
+    }
 
     return (
-      <div className="row">
+      <div className="row" style={border}>
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
           <h3>Sign Up</h3>
           <Form onSubmit={this.onSignUp}>

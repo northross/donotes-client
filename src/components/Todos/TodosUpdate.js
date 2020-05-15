@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 import messages from '../AutoDismissAlert/messages'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
@@ -66,6 +68,9 @@ class TodosUpdate extends Component {
 
   render () {
     const { todo, updated } = this.state
+    const heading = {
+      textAlign: 'center'
+    }
 
     let todosJsx = ''
     if (!todo) {
@@ -74,39 +79,46 @@ class TodosUpdate extends Component {
       todosJsx = <Redirect to={`/todos/${this.props.match.params.id}`}/>
     } else {
       todosJsx = (
-        <form onSubmit={this.handleSubmit}>
-          <label>Task</label>
-          <input
-            placeholder="Task"
-            name="title"
-            value={todo.title || ''}
-            required
-            onChange={this.handleChange}
-          />
-          <label>Due Date</label>
-          <input
-            placeholder="Example"
-            name="due"
-            value={todo.due}
-            required
-            onChange={this.handleChange}
-          />
-          <label>Description</label>
-          <input
-            placeholder="Details"
-            name="item"
-            value={todo.item}
-            required
-            onChange={this.handleChange}
-          />
-          <button type="submit">Submit Update</button>
-        </form>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Group controlId="title">
+            <Form.Label>Task</Form.Label>
+            <Form.Control
+              placeholder="Task"
+              name="title"
+              value={todo.title || ''}
+              required
+              onChange={this.handleChange}
+            />
+          </Form.Group>
+          <Form.Group controlId="due">
+            <Form.Label>Due Date</Form.Label>
+            <Form.Control
+              type="date"
+              placeholder="YEAR-MO-DY"
+              name="due"
+              value={todo.due || ''}
+              required
+              onChange={this.handleChange}
+            />
+          </Form.Group>
+          <Form.Group controlId="due">
+            <Form.Label>Description</Form.Label>
+            <Form.Control
+              placeholder="Details"
+              name="item"
+              value={todo.item || ''}
+              required
+              onChange={this.handleChange}
+            />
+          </Form.Group>
+          <Button variant="primary" type="submit">Submit Update</Button>
+        </Form>
       )
     }
 
     return (
-      <div>
-        <h1>To Do Update</h1>
+      <div style={heading}>
+        <h2>Update Your Task</h2>
         {todosJsx}
       </div>
     )

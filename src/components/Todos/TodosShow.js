@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect, Link } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
+import Card from 'react-bootstrap/Card'
 import messages from '../AutoDismissAlert/messages'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
@@ -57,28 +59,37 @@ class TodosShow extends Component {
   render () {
     const { todo, deleted } = this.state
     let todosJsx
-
+    const heading = {
+      textAlign: 'center'
+    }
     if (!todo) {
       todosJsx = 'Loading...'
     } else if (deleted) {
       todosJsx = <Redirect to ="/todos"/>
     } else {
       todosJsx = (
-        <div>
-          <h3>Task: {todo.title}</h3>
-          <h5>Due: {todo.due}</h5>
-          <h4>Details: {todo.item}</h4>
-          <button onClick={this.destroy}>Delete</button>
-          <button>
-            <Link to={`/todos/${this.props.match.params.id}/edit`}>Update</Link>
-          </button>
-        </div>
+        <Card
+          bg={'info'}
+          key={'idx'}
+          text={'light'}
+          style={{ width: '18rem' }}
+        >
+          <Card.Header>Task: {todo.title}</Card.Header>
+          <Card.Body>
+            <Card.Title>Due: {todo.due}</Card.Title>
+            <Card.Text>Details: {todo.item}</Card.Text>
+            <Button variant="dark" onClick={this.destroy}>Delete</Button>
+            <Button variant="light">
+              <Link to={`/todos/${this.props.match.params.id}/edit`}>Update</Link>
+            </Button>
+          </Card.Body>
+        </Card>
       )
     }
 
     return (
       <div>
-        <h1>Show To Do</h1>
+        <h1 style={heading}>Show To Do</h1>
         {todosJsx}
       </div>
     )
