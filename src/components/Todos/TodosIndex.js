@@ -39,6 +39,7 @@ class TodosIndex extends Component {
 
   render () {
     const { todos } = this.state
+    // const backgroundImageUrl = 'https://cdn.stocksnap.io/img-thumbs/960w/minimal-white_EAVNVUIK49.jpg'
     let todosJsx = ''
     const heading = {
       textAlign: 'center'
@@ -59,8 +60,10 @@ class TodosIndex extends Component {
 
     return (
       <div style={heading}>
-        <h1>To Do List</h1>
-        {todosJsx}
+        <div>
+          <h1>To Do List</h1>
+          {todosJsx}
+        </div>
       </div>
     )
   }
